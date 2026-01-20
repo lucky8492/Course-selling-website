@@ -211,7 +211,11 @@ userRouter.get("/purchased-courses" ,authUser, async function(req, res){
           _id : getCourses.courseId[i]
          })
          if(!course){
-            console.log("not found ")
+             await Purchasemodel.updateOne({
+              userId : userId
+             },{
+                  $pull:{courseId : getCourses.courseId[i]}
+             })
             continue;
          }else{
           courseArr[i] = course

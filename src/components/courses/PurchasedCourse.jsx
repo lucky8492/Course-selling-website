@@ -1,17 +1,20 @@
 import {React , useState ,useEffect} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { BookCheck ,Power } from 'lucide-react'
+import { useNavbar } from '../context/NavbarContext'
+import NavBar from '../UI_Components/NavBar'
+import { useCourseCard } from '../context/CourseCardContex'
+import CourseCard from '../UI_Components/courseCard'
+
 
 function PurchasedCourse() {
- const[userName , setUserName] = useState()
  const [course , setCourse] = useState([])
- const[isbuyed , setIsBuyed] = useState(false)
- const navigate = useNavigate()
- const myCourse  = [];
  const userToken = localStorage.getItem("userToken")
+ const {setUserName , setUserToken} = useNavbar()
 
  
-  useEffect(() => {
+ useEffect(() => {
     async function getUserData(){
     const reponse = await axios.get("http://localhost:3000/user/user-detail" , {
      headers:{
@@ -19,6 +22,8 @@ function PurchasedCourse() {
      }
    })
    setUserName(reponse.data.name)
+    setUserToken(userToken)
+    setUserTokens(userToken)
     }
 
     async function getPurchasedCourse() {
@@ -39,50 +44,15 @@ function PurchasedCourse() {
 },[])
 
 
- function navigateHome(){
-  navigate("/")
- }
 
   return(
     <div className=' bg-black '>
-      <div className="bg-[#0f1729]  flex-row justify-between items-center">
+      <div  className="bg-[#0f1729] h-screen flex-row justify-between items-center">
         {/* start of navbar */}
-     <div className=" bg-[#0f1729] p-3 ">
-      <nav className="bg-[#303b4d] rounded-xl border h-fit border-gray-800/50">
-        <div className="flex items-center justify-between px-6 py-4">
-          {/* Left Side - Logo and Navigation */}
-          <div className="flex items-center gap-8">
-            {/* Logo */}
-            
-            {/* Navigation Links */}
-            <div className="flex items-center gap-1">
-              <a onClick={navigateHome} className=" px-4 py-2 text-gray-400 hover:text-white font-medium">
-                Home
-              </a>
-              <a href="#" className="px-6 py-2 text-gray-400 hover:text-white font-medium transition">
-                Purchased
-              </a>
-              <a href="#" className="px-6 py-2 text-gray-400 hover:text-white font-medium transition">
-                Profile
-              </a>
-              <a href="#" className="px-6 py-2 text-gray-400 hover:text-white font-medium transition">
-                Help
-              </a>
-            </div>
-          </div>
 
-          {/* Right Side - Notifications and Profile */}
-          <div className="flex items-center ">
-            {/* Profile Avatar */}
-            <button className=" w-20  hover:cursor-pointer transition">
-              <h2 className='font-bold text-white scale-100 hover:scale-110 transition line-clamp-1'>{userName}</h2>
-            </button>
-          </div>
-        </div>
-      </nav>
-    </div>
+        <NavBar/>
         {/* end of navbar */}
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:px-2 xl:grid-cols-3 p-2 auto-rows-fr">
+        <div onClick={() => setIsSideBarEnabled(false)} className="mx-auto grid max-w-7xl gap-10 px-6 lg:px-2 xl:grid-cols-3 p-2 auto-rows-fr">
           <ul role="list" className="grid gap-x-4 gap-y-12 sm:grid-cols-3 sm:gap-y-6 xl:col-span-10">
             {course.length > 0 && (
              course.map((course) => (

@@ -6,7 +6,6 @@ const USER_SECRECT_KEY = process.env.USER_SECRECT_KEY
 
 async function authUser(req, res, next){
     const token = req.headers.authorization
-
     const checkToken = jwt.verify(token , USER_SECRECT_KEY)
     
     if(checkToken){

@@ -2,7 +2,8 @@
 const {Router} = require("express");
 
 const {Adminmodel , Usermodel ,Coursemodel  ,bcrypt ,jwt ,z , authAdmin,
-         ObjectId ,ADMIN_SECRECT_KEY, mongoose} = require("../path")
+         ObjectId ,ADMIN_SECRECT_KEY, mongoose} = require("../path");
+const { Await } = require("react-router-dom");
 
 const adminRouter = Router();
 
@@ -210,8 +211,9 @@ adminRouter.put("/update-course" , authAdmin , async function(req, res){
     })
     return
   }
-   const {courseId,updatedPrice , updatedDescription , updatedImgUrl ,updatedTitle } = req.body
- 
+   const {courseId,updatedPrice , updatedDescription , updatedImgUrl ,updatedTitle } = req.body        
+   console.log(courseId)
+   console.log(creatorId)
    const filter = {_id: new ObjectId(courseId) ,
                    creatorId:creatorId
                    } // always use new keyword while serching in db 
@@ -255,24 +257,26 @@ adminRouter.post("/courses" , async function(req, res){
 })
 
 adminRouter.delete("/remove-course" ,authAdmin, async function(req,res){
-   
-  const creatorId = req.creatorId
-  const courseId = req.query.courseId;
   
+  const creatorId = req.creatorId
+  console.log(creatorId)
+  const courseId = req.body.courseId;
+  
+  console.log(courseId)
    const validAdmin = await Coursemodel.findOne({
     _id : courseId,
-    courseId : courseId     
+     creatorId : creatorId     
    })
    
    if(!validAdmin){
     res.json({
       message : "You Cannot delete other's course"
     })
+    return
    }
    const wasDeleted = await Coursemodel.deleteOne({
     _id :courseId
    })
-
    if(!wasDeleted){
     res.json({
       message: "Course was not deleted"
