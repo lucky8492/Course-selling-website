@@ -90,12 +90,12 @@ function NavBar() {
 
             {isSideBarEnabled && (
                <div className="absolute right-0 top-full mt-2 z-[9999]">
-                  <div className="w-64 bg-[#2a3441] rounded-2xl p-6 shadow-lg">
+                  <div className="w-64 bg-[radial-gradient(circle_at_center,#1a5f7a_0%,#0a1929_50%,#050a1a_100%)] border border-white rounded-2xl p-6 shadow-lg">
                       {/* Menu Items */}
                       <nav className="space-y-2">
                         
                         { userToken && !adminToken && (
-                        <div className="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-700/50 cursor-pointer transition">
+                        <div className="flex items-center border border-white justify-between px-4 py-3 rounded-lg hover:bg-gray-700/50 cursor-pointer transition">
                           <div className="flex items-center gap-3">
                           <BookCheck className="w-5 h-5 text-gray-400"/>
                             <span onClick={() => navigateBrowser("purchased")} className="text-gray-300 text-base">Purchased</span>
@@ -105,7 +105,7 @@ function NavBar() {
                         }
 
                         {!userToken && adminToken && (
-                        <div className="flex-row items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-700/50 cursor-pointer transition">
+                        <div className="flex-row items-center    border border-white   justify-between px-4 py-3 rounded-lg hover:bg-gray-700/50 cursor-pointer transition">
                           <div className="flex items-center gap-3">
                           <BookA className="w-5 h-5 text-gray-400"/>
                             <span onClick={()=>navigateBrowser("addCourse")} className="text-gray-300 text-base">Add course</span>
@@ -115,7 +115,7 @@ function NavBar() {
                         }      
 
                         {!userToken && !adminToken && (
-                        <div className="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-700/50 cursor-pointer transition">
+                        <div className="flex items-center  border border-white  justify-between px-4 py-3 rounded-lg hover:bg-gray-700/50 cursor-pointer transition">
                           <div className="flex items-center gap-3">
                           <Key className="w-5 h-5 text-gray-400"/>
                             <span onClick={()=>navigateBrowser("signin")} className="text-gray-300 text-base">Login</span>
@@ -124,7 +124,7 @@ function NavBar() {
                         )
                         }                       
                         {!userToken && !adminToken && (
-                        <div className="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-700/50 cursor-pointer transition">
+                        <div className="flex items-center  border border-white  justify-between px-4 py-3 rounded-lg hover:bg-gray-700/50 cursor-pointer transition">
                           <div className="flex items-center gap-3">
                           <Key className="w-5 h-5 text-gray-400"/>
                             <span onClick={()=>navigateBrowser("signup")} className="text-gray-300 text-base">SignUp</span>
@@ -134,7 +134,7 @@ function NavBar() {
                         } 
                                             
                         {/* Log Out */}
-                        <div className="flex items-center px-4 py-3 rounded-lg hover:bg-gray-700/50 cursor-pointer transition">
+                        <div className="flex items-center px-4 py-3   border border-white   rounded-lg hover:bg-gray-700/50 cursor-pointer transition">
                           <div className="flex items-center gap-3">
                             <Power className="w-5 h-5 text-gray-400" />
                             <span onClick={logout} className="text-gray-300 text-base">Log Out</span>

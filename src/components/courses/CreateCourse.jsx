@@ -1,10 +1,10 @@
 import { useState ,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-
-
+import { useNavbar } from '../context/NavbarContext'
+import NavBar from '../UI_Components/NavBar'
 function CreateCourse() {
-   const[userName , setUserName] = useState("")
+  
    const[courseTitle , setCourseTitle] = useState("")
    const[courseDescription , setCourseDescription] = useState("")
    const[coursePrice , setCoursePrice] = useState("")
@@ -12,9 +12,11 @@ function CreateCourse() {
    const[message , setMessage] = useState();
    const[color , setColor] = useState(false);
    const navigate = useNavigate()
+   const { setAdminToken , setUserName} = useNavbar()
 
    const myCourse  = [];
    const adminToken = localStorage.getItem("adminToken")
+   setAdminToken(adminToken)
     useEffect(() => {
     async function getUserData(){
       const reponse = await axios.get("http://localhost:3000/admin/admin-detail" , {
@@ -57,9 +59,10 @@ function CreateCourse() {
   }
   
   return(
-    <div className="min-h-screen bg-[#0f1729] flex items-center justify-center p-8">
-      <div className="items-center w-full">
-        <div className="bg-[#1a2332] md:w-[50%] md:mr-25 md:ml-75 rounded-2xl p-8 md:p-12">
+    <div className=" bg-[radial-gradient(circle_at_center,#1a5f7a_0%,#0a1929_50%,#050a1a_100%)] ">
+      <div className="">
+        <NavBar/>
+        <div className="backdrop-blur-lg border mt-5 shadow-2xl border-white md:w-[50%] md:mr-25 md:ml-75 rounded-2xl p-8 md:p-12">
 
           <h1 className="text-white text-3xl md:text-4xl font-bold mb-3">
             Add Course
@@ -80,7 +83,7 @@ function CreateCourse() {
                   value={courseTitle}
                   onChange={(e) => setCourseTitle(e.target.value)}
                   placeholder="e.g. Harkirat-dsa"
-                  className="w-full bg-[#2a3441] text-gray-300 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full border-white border text-gray-300 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white"
                 />
               </div>
 
@@ -94,7 +97,7 @@ function CreateCourse() {
                   value={courseDescription}
                   onChange={(e) => setCourseDescription(e.target.value)}
                   placeholder="this course will...."
-                  className="w-full bg-[#2a3441] text-gray-300 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full border-white border text-gray-300 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white"
                 />
               </div>
               
@@ -108,7 +111,7 @@ function CreateCourse() {
                   value={coursePrice}
                   onChange={(e) => setCoursePrice(e.target.value)}                  
                   placeholder="e.g. ₹4999"
-                  className="w-full bg-[#2a3441] text-gray-300 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full border-white border text-gray-300 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white"
                 />
               </div>
 
@@ -122,7 +125,7 @@ function CreateCourse() {
                   value={courseThunbnail}
                   onChange={(e) => setCourseThumbnail(e.target.value)}                  
                   placeholder="e.g. http://example.jpg"
-                  className="w-full bg-[#2a3441] text-gray-300 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full border-white border text-gray-300 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-white"
                 />
               </div>
             </div>
@@ -133,7 +136,7 @@ function CreateCourse() {
             <button
               type="button"
               onClick={addCourse}
-              className="w-full bg-blue-600 hover:bg-blue-700 hover:cursor-pointer text-white font-medium rounded-lg px-4 py-3 mt-2 transition"
+              className="w-full border border-white hover:text-black hover:bg-white font-mono hover:cursor-pointer text-white font-medium rounded-lg px-4 py-3 mt-9 transition"
             >
               Add course +
             </button>

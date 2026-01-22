@@ -122,7 +122,7 @@ async function updateCourse(courseId) {
 
                 {
                   updatedId === course._id && (
-                 <div  className="flex-row bg-[#303b4d] h-full items-center border border-white rounded-2xl">
+                 <div  className="flex-row backdrop-blur-lg h-full items-center border border-white rounded-2xl">
                     <div className='p-2'>
                     <label className="block m-2 text-white text-sm mb-2">
                       Updated Course title
@@ -132,7 +132,7 @@ async function updateCourse(courseId) {
                       value={updatedTitle}
                       onChange={(e) => setUpdatedIdTitle(e.target.value)}
                       placeholder="e.g. Harkirat-dsa"
-                      className="w-full bg-[#2a3441] text-gray-300 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      className="w-full bg-white  placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500"
                     />
                   </div>
                     <div className='p-2'>
@@ -144,7 +144,7 @@ async function updateCourse(courseId) {
                       value={updatedDescription}
                       onChange={(e) => setUpdatedIdDescription(e.target.value)}
                       placeholder="This course will...."
-                      className="w-full bg-[#2a3441] text-gray-300 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      className="w-full  bg-white placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500"
                     />
                   </div>
                   <div className='p-2'>
@@ -156,7 +156,7 @@ async function updateCourse(courseId) {
                       value={updatedPrice}
                       onChange={(e) => setUpdatedIdPrice(e.target.value)}
                     placeholder="e.g. ₹4999"
-                      className="w-full bg-[#2a3441] text-gray-300 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      className="w-full  bg-white placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500"
                     />
                   </div>
               <div className='p-2'>
@@ -168,13 +168,13 @@ async function updateCourse(courseId) {
                   value={updatedImgUrl}
                   onChange={(e) => setUpdatedIdImgUrl(e.target.value)}
                   placeholder="e.g. http://example.jpg"
-                  className="w-full bg-[#2a3441] text-gray-300 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full  bg-white placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
               </div>
                   <div>                 
                     <button
                      onClick={(e) => {updateCourse(course._id)}}
-                    className="bg-white rounded-2xl font-bold w-[90%] mr-5 ml-5 mt-7 m-2 p-2 hover:bg-gray-300 hover:cursor-pointer ">Update course</button>
+                    className="border border-white hover:bg-white hover:text-black text-white  rounded-2xl font-bold w-[90%] mr-5 ml-5 mt-7 m-2 p-2 hover:cursor-pointer ">Update course</button>
                   </div>
                 </div>
                   )

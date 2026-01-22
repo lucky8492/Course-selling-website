@@ -7,12 +7,11 @@ import NavBar from '../UI_Components/NavBar'
 import { useCourseCard } from '../context/CourseCardContex'
 import CourseCard from '../UI_Components/courseCard'
 
-
 function PurchasedCourse() {
  const [course , setCourse] = useState([])
  const userToken = localStorage.getItem("userToken")
  const {setUserName , setUserToken} = useNavbar()
-
+const {setCourses}  = useCourseCard()
  
  useEffect(() => {
     async function getUserData(){
@@ -23,7 +22,7 @@ function PurchasedCourse() {
    })
    setUserName(reponse.data.name)
     setUserToken(userToken)
-    setUserTokens(userToken)
+
     }
 
     async function getPurchasedCourse() {
@@ -47,7 +46,7 @@ function PurchasedCourse() {
 
   return(
     <div className=' bg-black '>
-      <div  className="bg-[#0f1729] h-screen flex-row justify-between items-center">
+      <div  className="bg-[radial-gradient(circle_at_center,#1a5f7a_0%,#0a1929_50%,#050a1a_100%)] h-screen flex-row justify-between items-center">
         {/* start of navbar */}
 
         <NavBar/>
@@ -57,7 +56,7 @@ function PurchasedCourse() {
             {course.length > 0 && (
              course.map((course) => (
               <li key={course._id}>
-                <div className="flex-row bg-[#303b4d] h-full items-center border-2 border-white rounded-2xl">
+                <div className="flex-row backdrop-blur-lg h-full items-center border border-white rounded-2xl">
                   <img
                     alt=""
                     src={course.imageUrl}
@@ -67,7 +66,7 @@ function PurchasedCourse() {
                     <h3 className="text-base/7 font-bold tracking-tight m-4 text-white">{course.title}</h3>
                     <p className='text-sm font-extralight p-4 line-clamp-2 text-white '>{course.description}</p>
                     <button
-                    className="bg-amber-200 rounded-2xl font-bold w-[90%] mr-5 ml-5  m-2 p-2  hover:cursor-pointer">Watch lecture</button>
+                    className=" border border-white rounded-2xl text-white hover:bg-white hover:text-black font-bold w-[90%] mr-5 ml-5  m-2 p-2  hover:cursor-pointer">Watch lecture</button>
                   </div>
                 </div>
               </li>

@@ -31,10 +31,16 @@ function App() {
       <Route path='/userSignup' element={<UserSignup/>}/>      
       <Route path='/adminSignup' element={<AdminSignup/>}/>      
       <Route path='/adminSignin' element={<AdminSignin/>}/> 
-      <Route path='/admin/addcourse' element ={<CreateCourse/>}/>
+      <Route path='/admin/addcourse' element ={
+        <NavBarProvider>
+          <CreateCourse/>
+        </NavBarProvider>
+        }/>
       <Route path='/user/purchase' element={
         <NavBarProvider>
+          <CourseCardProvider>
           <PurchasedCourse/>
+          </CourseCardProvider>
         </NavBarProvider>
         }/>    
      </Routes>
