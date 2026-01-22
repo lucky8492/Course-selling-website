@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {  useNavbar } from '../context/NavbarContext';
 import NavBar from '../UI_Components/NavBar';
 import { useCourseCard } from '../context/CourseCardContex';
-import CourseCard from '../UI_Components/courseCard';
+import CourseCard from '../UI_Components/CourseCard';
 function Courses() {
  const [updatedId , setUpdatedId] = useState("")
  const userToken = localStorage.getItem("userToken")
