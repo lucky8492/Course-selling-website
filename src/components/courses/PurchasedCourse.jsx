@@ -5,6 +5,7 @@ import { BookCheck ,Power } from 'lucide-react'
 import { useNavbar } from '../context/NavbarContext'
 import NavBar from '../UI_Components/NavBar'
 import { useCourseCard } from '../context/CourseCardContex'
+const API = import.meta.env.VITE_RENDER_API
 
 function PurchasedCourse() {
  const [course , setCourse] = useState([])
@@ -14,7 +15,7 @@ const {setCourses}  = useCourseCard()
  
  useEffect(() => {
     async function getUserData(){
-    const reponse = await axios.get("http://localhost:3000/user/user-detail" , {
+    const reponse = await axios.get(`${API}/user/user-detail` , {
      headers:{
       authorization : userToken
      }
@@ -26,7 +27,7 @@ const {setCourses}  = useCourseCard()
 
     async function getPurchasedCourse() {
       try{
-        const reponse = await axios.get("http://localhost:3000/user/purchased-courses" , {
+        const reponse = await axios.get(`${API}/user/purchased-courses` , {
          headers:{
            authorization : userToken
          }

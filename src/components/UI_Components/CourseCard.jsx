@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useCourseCard } from '../context/CourseCardContex'
 import axios from 'axios'
+const API = import.meta.env.VITE_RENDER_API
+
+
+
 
 function CourseCard() {
   const {course ,setCourses, userTokens , adminTokens} = useCourseCard()
@@ -13,7 +17,7 @@ function CourseCard() {
 
 useEffect(()=>{
     async function getCourse() {
-     const reponse = await axios.get("http://localhost:3000/user/courses")
+     const reponse = await axios.get(`${API}/user/courses`)
     //  console.log(reponse.data.courses)
      setCourses(reponse.data.courses)
   }
@@ -23,8 +27,7 @@ useEffect(()=>{
 
   async function buyNow(courseId){
 
-  console.log(courseId)
-  const reponse = await axios.post("http://localhost:3000/user/buy-Course" , 
+  const reponse = await axios.post(`${API}/user/buy-Course` , 
   {
     "courseId" : courseId
   },
@@ -35,11 +38,10 @@ useEffect(()=>{
     }
   })
   alert("Buyed succefully")
-  console.log(reponse.data.message)
 }
 
 async function deleteCourse(courseId){
-   const response = await axios.delete("http://localhost:3000/admin/remove-course" ,{
+   const response = await axios.delete(`${API}/admin/remove-course` ,{
     headers:{
       authorization:adminTokens
     },
@@ -54,7 +56,7 @@ async function deleteCourse(courseId){
 
 async function updateCourse(courseId) {
  
-  const reponse = await axios.put("http://localhost:3000/admin/update-course" , 
+  const reponse = await axios.put(`${API}/admin/update-course` , 
       {
       courseId : courseId,
       updatedPrice:parseInt(updatedPrice),
@@ -66,7 +68,7 @@ async function updateCourse(courseId) {
         authorization : adminTokens
       }
   })
-  console.log(reponse.data)
+  
   alert(reponse.data.message)
   setUpdatedId("")
    setUpdatedIdTitle("")

@@ -6,7 +6,11 @@ const {express , MONGODB_URL,mongoose} = require("./path")
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+
+app.use(cors({
+  origin: 'https://course-selling-website-khaki.vercel.app/',
+  credentials: true
+}));
 
 mongoose.connect(MONGODB_URL)
 

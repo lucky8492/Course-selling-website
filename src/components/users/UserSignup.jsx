@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios';
 import { useState , useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+const API = import.meta.env.VITE_RENDER_API
+
 function UserSignup() {
 
     const [userName , setUserName] = useState("");
@@ -13,7 +15,7 @@ function UserSignup() {
   
     async function createAccount (){
       try{ 
-        const response  = await axios.post("http://localhost:3000/user/signup" , {
+        const response  = await axios.post(`${API}/user/signup` , {
         "email" : userEmail,
         "password" : userPassword,
         "name" : userName

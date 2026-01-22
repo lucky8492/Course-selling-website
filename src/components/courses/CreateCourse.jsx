@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useNavbar } from '../context/NavbarContext'
 import NavBar from '../UI_Components/NavBar'
-function CreateCourse() {
-  
+const API = import.meta.env.VITE_RENDER_API
+
+
+function CreateCourse() { 
    const[courseTitle , setCourseTitle] = useState("")
    const[courseDescription , setCourseDescription] = useState("")
    const[coursePrice , setCoursePrice] = useState("")
@@ -13,13 +15,13 @@ function CreateCourse() {
    const[color , setColor] = useState(false);
    const navigate = useNavigate()
    const { setAdminToken , setUserName} = useNavbar()
-
+   
    const myCourse  = [];
    const adminToken = localStorage.getItem("adminToken")
    setAdminToken(adminToken)
     useEffect(() => {
     async function getUserData(){
-      const reponse = await axios.get("http://localhost:3000/admin/admin-detail" , {
+      const reponse = await axios.get(`${API}/admin/admin-detail` , {
        headers:{
         authorization : adminToken
        }
@@ -33,7 +35,7 @@ function CreateCourse() {
   
   async function addCourse(){
     try{
-      const response = await axios.post("http://localhost:3000/admin/add-course" , {
+      const response = await axios.post(`${API}/admin/add-course` , {
         "title" : courseTitle,
         "description": courseDescription,
         "price" : parseInt(coursePrice),

@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios';
 import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+const API = import.meta.env.VITE_RENDER_API
 
 function UserSignin() {
   
@@ -13,7 +14,7 @@ function UserSignin() {
 
   async function login (){
     try{ 
-      const response  = await axios.post("http://localhost:3000/user/signin" , {
+      const response  = await axios.post(`${API}/user/signin` , {
       "email" : userEmail,
       "password" : userPassword,
      })

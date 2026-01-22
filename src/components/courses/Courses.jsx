@@ -6,6 +6,11 @@ import {  useNavbar } from '../context/NavbarContext';
 import NavBar from '../UI_Components/NavBar';
 import { useCourseCard } from '../context/CourseCardContex';
 import CourseCard from '../UI_Components/CourseCard';
+const API = import.meta.env.VITE_RENDER_API
+
+
+
+
 function Courses() {
  const [updatedId , setUpdatedId] = useState("")
  const userToken = localStorage.getItem("userToken")
@@ -18,7 +23,7 @@ function Courses() {
  
  }else if(userToken && !adminToken){
     async function getUserData(){
-    const reponse = await axios.get("http://localhost:3000/user/user-detail" , {
+    const reponse = await axios.get(`${API}/user/user-detail` , {
      headers:{
       authorization : userToken
      }
@@ -34,7 +39,7 @@ function Courses() {
   getUserData()
  }else if(!userToken && adminToken){
    async function getAdminData(){
-    const reponse = await axios.get("http://localhost:3000/admin/admin-detail" , {
+    const reponse = await axios.get(`${API}/admin/admin-detail` , {
       headers : {
         authorization : adminToken
       }
@@ -51,7 +56,7 @@ function Courses() {
  }
 
   async function getCourse() {
-     const reponse = await axios.get("http://localhost:3000/user/courses")
+     const reponse = await axios.get(`${API}/user/courses`)
     //  console.log(reponse.data.courses)
    
      setCourses(reponse.data.courses)

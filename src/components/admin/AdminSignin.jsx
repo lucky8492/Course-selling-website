@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+const API = import.meta.env.VITE_RENDER_API
 
 function AdminSignin() {
     const [adminEmail , setAdminEmail]  = useState("");
@@ -12,7 +13,7 @@ function AdminSignin() {
   
     async function login (){
       try{ 
-        const response  = await axios.post("http://localhost:3000/admin/signin" , {
+        const response  = await axios.post(`${API}/admin/signin` , {
         "email" : adminEmail,
         "password" : adminPassword,
        })
