@@ -5,7 +5,6 @@ import { BookCheck ,Power } from 'lucide-react'
 import { useNavbar } from '../context/NavbarContext'
 import NavBar from '../UI_Components/NavBar'
 import { useCourseCard } from '../context/CourseCardContex'
-import CourseCard from '../UI_Components/courseCard'
 
 function PurchasedCourse() {
  const [course , setCourse] = useState([])
