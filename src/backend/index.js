@@ -7,18 +7,21 @@ const app = express();
 
 app.use(express.json());
 
+const cors = require('cors');
+
 app.use(cors({
-  origin: function(origin , callback){
-    if(!origin || 
-        origin.endsWith('.vercel.app')||
-        origin.includes('localhost')){
-          callback(null,true)
-        }else{
-          callback(new Error('Not allowed by cors policy'))
-        } 
+  origin: function(origin, callback) {
+    // Allow all Vercel domains and localhost
+    if (!origin || 
+        origin.endsWith('.vercel.app') || 
+        origin.includes('localhost')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
   },
-  Credential :true
-}))
+  credentials: true
+}));
 
 mongoose.connect(MONGODB_URL)
 
