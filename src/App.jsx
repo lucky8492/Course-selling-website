@@ -18,7 +18,6 @@ function App() {
     <>
     <BrowserRouter>
      <Routes>
-     
       <Route path='/' element={
         <CourseCardProvider>
         <NavBarProvider>

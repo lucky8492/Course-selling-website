@@ -5,6 +5,7 @@ import { BookCheck ,Power } from 'lucide-react'
 import { useNavbar } from '../context/NavbarContext'
 import NavBar from '../UI_Components/NavBar'
 import { useCourseCard } from '../context/CourseCardContex'
+import Footer from '../UI_Components/Footer'
 const API = import.meta.env.VITE_RENDER_API
 
 function PurchasedCourse() {
@@ -80,6 +81,7 @@ const {setCourses}  = useCourseCard()
           }
           </ul>
         </div>
+        <Footer/>
       </div>
     </div>
   )

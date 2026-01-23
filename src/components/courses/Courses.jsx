@@ -6,6 +6,7 @@ import {  useNavbar } from '../context/NavbarContext';
 import NavBar from '../UI_Components/NavBar';
 import { useCourseCard } from '../context/CourseCardContex';
 import CourseCard from '../UI_Components/CourseCard';
+import Footer from '../UI_Components/Footer';
 const API = import.meta.env.VITE_RENDER_API
 
 
@@ -18,18 +19,17 @@ function Courses() {
  const navigate = useNavigate()
  const {setUserToken, setAdminToken , setUserName} = useNavbar()
  const {setCourses , setUserTokens , setAdminTokens} = useCourseCard()
+
+
   useEffect(() => {
-  if(!userToken && !adminToken){
- 
- }else if(userToken && !adminToken){
+  if(userToken && !adminToken){
     async function getUserData(){
     const reponse = await axios.get(`${API}/user/user-detail` , {
      headers:{
       authorization : userToken
      }
    })
-   
-   //1
+  
    setUserName(reponse.data.name)
    setUserToken(userToken)
    setUserTokens(userToken)
@@ -44,7 +44,6 @@ function Courses() {
         authorization : adminToken
       }
     })
-    // console.log(reponse.data.name)
    setUserName(reponse.data.name
    )
    setAdminToken(adminToken)
@@ -57,27 +56,23 @@ function Courses() {
 
   async function getCourse() {
      const reponse = await axios.get(`${API}/user/courses`)
-    //  console.log(reponse.data.courses)
-   
-     setCourses(reponse.data.courses)
+        setCourses(reponse.data.courses)
   }
   getCourse()
 
 
-},[userToken , adminToken , updatedId , ])
+},[userToken , adminToken , updatedId ])
 
 
   return (
     <>
-    <div className=' bg-black'>
-      <div className="bg-[radial-gradient(circle_at_center,#1a5f7a_0%,#0a1929_50%,#050a1a_100%)]  text-black ">
-
-        {/* start of navbar */}
+  
+      <div className="bg-[radial-gradient(circle_at_center,#1a5f7a_0%,#0a1929_50%,#050a1a_100%)]  w-screen ">
         <NavBar/>
-        {/* end of navbar */}
        <CourseCard/>
+       <Footer/>
       </div>
-    </div>
+   
 
     </>
   )
