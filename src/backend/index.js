@@ -8,9 +8,17 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: 'https://course-selling-website-omega.vercel.app/',
-  credentials: true
-}));
+  origin: function(origin , callback){
+    if(!origin || 
+        origin.endsWith('.vercel.app')||
+        origin.includes('localhost')){
+          callback(null,true)
+        }else{
+          callback(new Error('Not allowed by cors policy'))
+        } 
+  },
+  Credential :true
+}))
 
 mongoose.connect(MONGODB_URL)
 
